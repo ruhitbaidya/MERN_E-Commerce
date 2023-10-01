@@ -21,11 +21,12 @@ const creatingProductControl = async (req, res)=>{
             return res.status(407).json({success : true, message : "You Can Not Upload More then 2mb"})
         }
 
-        const createProduct = await productModel({...req.fields, slug : slugify(name)})
+        const createProduct =  productModel({...req.fields, slug : slugify(name)})
         if(photo){
              createProduct.photo.data = fs.readFileSync(photo.path)
              createProduct.photo.contentType = photo.type;
         }
+        await createProduct.save()
         res.status(202).json({success : true, message : "successfully create product", data : createProduct})
     } catch (error) {
         res.status(405).json({success : false, message : "this is product create route problem"})
