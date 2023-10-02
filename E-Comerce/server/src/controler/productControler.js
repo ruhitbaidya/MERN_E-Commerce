@@ -33,5 +33,12 @@ const creatingProductControl = async (req, res)=>{
     }
 }
 
+const getAllProduct = (req, res)=>{
+    try{
+        res.status(200).json({success : true, message : "user find successfully"})
+    }catch(error){
+        res.status(403).json({success : false, message : "this routre is user fetch route problem"})
+    }
+}
 
-module.exports = {creatingProductControl}
+module.exports = {creatingProductControl,getAllProduct}
