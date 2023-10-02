@@ -21,24 +21,35 @@ const creatingProductControl = async (req, res)=>{
             return res.status(407).json({success : true, message : "You Can Not Upload More then 2mb"})
         }
 
-        const createProduct =  productModel({...req.fields, slug : slugify(name)})
+        let createProduct =  productModel({...req.fields, slug : slugify(name)})
         if(photo){
              createProduct.photo.data = fs.readFileSync(photo.path)
              createProduct.photo.contentType = photo.type;
         }
-        await createProduct.save()
-        res.status(202).json({success : true, message : "successfully create product", data : createProduct})
+        let lastusers = await createProduct.save();
+        res.status(202).json({success : true, message : "successfully create product", data : lastusers})
     } catch (error) {
-        res.status(405).json({success : false, message : "this is product create route problem"})
+        res.status(405).json({success : false, message : "this is product create route problem", error})
     }
 }
 
-const getAllProduct = (req, res)=>{
+const getAllProduct = async (req, res)=>{
     try{
-        res.status(200).json({success : true, message : "user find successfully"})
+        const userFinds = await productModel.find({},{photo : 0})
+        res.status(200).json({success : true, message : "user find successfully", data : userFinds})
     }catch(error){
         res.status(403).json({success : false, message : "this routre is user fetch route problem"})
     }
 }
 
-module.exports = {creatingProductControl,getAllProduct}
+const deleteProduct = async (req, res)=>{
+    try{
+        const id = req.params.id;
+        const deleteUsers = await productModel.findByIdAndDelete({_id : id})
+        res.status(200).json({success : true, message : "this product delete Successfully"})
+    }catch(error){
+        res.status(408).json({success : false, message : "this is problem of router delte"})
+    }
+}
+
+module.exports = {creatingProductControl,getAllProduct,deleteProduct}
