@@ -27,8 +27,8 @@ const AdminDashboard = () => {
             <div className="row">
                 <div className="col-md-3">
                     <ul className="list-group">
-                        <li className="list-group-item" onClick={()=>HandelComponent("category")}><NavLink >Create Product</NavLink></li>
-                        <li className="list-group-item" onClick={()=>HandelComponent("product")}><NavLink >Create Categaroy</NavLink></li>
+                        <li className="list-group-item" onClick={()=>HandelComponent("product")}><NavLink >Create Product</NavLink></li>
+                        <li className="list-group-item" onClick={()=>HandelComponent("category")}><NavLink >Create Categaroy</NavLink></li>
                         <li className="list-group-item" onClick={()=>HandelComponent("user")}><NavLink >User Control</NavLink></li>
                     </ul>
                 </div>

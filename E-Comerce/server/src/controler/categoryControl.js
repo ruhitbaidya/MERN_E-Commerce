@@ -62,9 +62,23 @@ const updateCatagoryControler = async (req, res)=>{
         res.status(405).json({success : false, message : "this message has from catagory server", data : error})
     }
 }
+const findSingalGetcatagory = async  (req, res)=>{
+    try {
+        const {id} = req.params;
+        const datafindsingal = await catmodelFun.findById({_id : id})
+        if(datafindsingal){
+            return res.status(205).json({success : true, message : "catagory get success", data : datafindsingal})
+        }else{
+            return res.status(408).json({success : false, message : "this id is not valid id"})
+        }
+    } catch (error) {
+        res.status(405).json({success : false, message : "this is singal router problem"})
+    }
+}
 module.exports = {
     catagoryControler,
     deleteCatagoryControler,
     findAllCatagoryControler,
-    updateCatagoryControler
+    updateCatagoryControler,
+    findSingalGetcatagory
 }

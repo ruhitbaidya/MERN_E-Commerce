@@ -4,7 +4,7 @@ const { userModel } = require("../model/register_schema");
 const LoginProtactRoute = (req, res, next) => {
     try {
         let tokenfi = req.body.token || req.headers.auth;
-        
+        console.log(tokenfi)
         const deleteid = req.body.id;
         // console.log(typeof(tokenfi))
         const tokenMkArr = tokenfi.split(" ")
