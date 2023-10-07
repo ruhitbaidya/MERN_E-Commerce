@@ -4,7 +4,6 @@ import { FaBabyCarriage } from "react-icons/fa6";
 import { userContext } from '../authantion/userContext';
 const Navbar = () => {
     const { user, tokenData, setTokenData, setUser } = useContext(userContext)
-    console.log(tokenData)
     const logOutFun = () => {
         localStorage.removeItem("userAuth")
         localStorage.removeItem("userInfo")

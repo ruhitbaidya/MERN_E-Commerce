@@ -10,14 +10,14 @@ const Home = () => {
     axios.post("http://localhost:3001/register/user/userVerify",
       { token: `bearr ${tokenGet}` })
       .then((res) => {
-        console.log(res.data.data)
+
         localStorage.setItem("userInfo", JSON.stringify(res.data.data))
         setTokenData(res.data.data)
       }).catch((err) => {
         console.log(err)
       })
   }
-  console.log(tokenData)
+
   useEffect(() => {
     verifyToken()
   }, [])
