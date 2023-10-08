@@ -55,5 +55,9 @@ body{
 .wrapperError p{
   font-size: 60px;
 }
+.product-showImage {
+  width : 200px;
+  height : 200px;
+}
 /* font-family: 'Poppins', sans-serif;
 font-family: 'Roboto', sans-serif; */

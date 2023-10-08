@@ -6,6 +6,7 @@ const creatingProductControl = async (req, res)=>{
     try {
         const {name, price, queantity, catagory} = req.fields;
         const {photo} = req.files;
+        console.log(req.fields)
         switch(true){
             case !name :
             return res.status(407).json({success : true, message : "This Name Is Require"})
