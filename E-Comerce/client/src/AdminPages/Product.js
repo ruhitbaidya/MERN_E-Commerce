@@ -20,7 +20,11 @@ const Product = () => {
   }
   const tokenget = localStorage.getItem("userAuth")
   const sendData = (textData)=>{
-    axios.post("http://localhost:3001/product/makeing/create-product", {textData, token : `brr ${tokenget}`})
+    axios.post("http://localhost:3001/product/makeing/create-product", textData, {
+      headers: {
+        auth : `Bearer ${tokenget}`
+        }
+      })
     .then((res)=>{
       console.log(res)
     }).catch((error)=>{
@@ -29,15 +33,18 @@ const Product = () => {
   }
   const submitDataProduct = (e)=>{
     e.preventDefault();
+    // name: "", price: "", queantity: "", catagory: "", shipping 
     const formData = new FormData();
+    formData.append("photo", photo)
+    formData.append("photoName", photo.name)
     formData.append("name", storeData.name)
     formData.append("price", storeData.price)
     formData.append("queantity", storeData.queantity)
     formData.append("catagory", storeData.catagory)
     formData.append("shipping", storeData.shipping)
-    formData.append("photo", storeData.photo)
+    
     sendData(formData)
-    console.log(formData)
+    console.log(storeData)
   }
   useEffect(() => {
     getDatafromDB()
@@ -82,7 +89,7 @@ const Product = () => {
           </div>
           <div className="col-md-3">
             <label htmlFor="image" className=' mt-4'>
-              <input type="file" onChange={(e)=>{setPhoto(e.target.files[0])}} accept="/image*" />
+              <input type="file" name="photo" onChange={(e)=>{setPhoto(e.target.files[0])}} />
             </label>
           </div>
           <div className="col-md-3">

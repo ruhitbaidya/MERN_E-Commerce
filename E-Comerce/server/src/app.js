@@ -9,6 +9,7 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
 app.use(cors())
+app.use(express.static('public'))
 app.use('/register/user', router)
 app.use("/register/catagory", Catrouter)
 app.use("/product/makeing", productRouter)

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Catagory from '../AdminPages/Catagory'
 import Product from '../AdminPages/Product'
+import ShowAllProduct from '../AdminPages/ShowAllProduct'
 import UserShow from '../AdminPages/UserShow'
 
 const AdminDashboard = () => {
@@ -13,6 +14,8 @@ const AdminDashboard = () => {
         }else if(text == "product"){
             setComponent(text)
         }else if(text == "user"){
+            setComponent(text)
+        }else if(text == "showProduct"){
             setComponent(text)
         }
         console.log(text)
@@ -28,6 +31,7 @@ const AdminDashboard = () => {
                 <div className="col-md-3">
                     <ul className="list-group">
                         <li className="list-group-item" onClick={()=>HandelComponent("product")}><NavLink >Create Product</NavLink></li>
+                        <li className="list-group-item" onClick={()=>HandelComponent("showProduct")}><NavLink >show All Product</NavLink></li>
                         <li className="list-group-item" onClick={()=>HandelComponent("category")}><NavLink >Create Categaroy</NavLink></li>
                         <li className="list-group-item" onClick={()=>HandelComponent("user")}><NavLink >User Control</NavLink></li>
                     </ul>
@@ -36,6 +40,7 @@ const AdminDashboard = () => {
                     {componente == "category" ? <Catagory /> : ""}
                     {componente == "product" ? <Product /> : ""}
                     {componente == "user" ? <UserShow /> : ""}
+                    {componente == "showProduct" ? <ShowAllProduct /> : ""}
                 </div>
             </div>
         </div>
