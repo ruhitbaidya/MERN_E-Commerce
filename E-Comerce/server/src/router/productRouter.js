@@ -7,7 +7,7 @@ const {creatingProductControl, getAllProduct, deleteProduct} = require("../contr
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'src/public')
+      cb(null, 'public')
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + "-" + file.originalname)
@@ -18,5 +18,5 @@ const storage = multer.diskStorage({
 
 productRouter.post("/create-product",LoginProtactRoute, isAdmin, upload.single("photo"), creatingProductControl)
 productRouter.get("/getAllProduct/", getAllProduct)
-productRouter.delete("/deleteProduct/:id", deleteProduct)
+productRouter.post("/deleteProduct/:id",LoginProtactRoute, isAdmin, deleteProduct)
 module.exports = productRouter

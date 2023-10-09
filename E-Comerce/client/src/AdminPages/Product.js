@@ -36,7 +36,6 @@ const Product = () => {
     // name: "", price: "", queantity: "", catagory: "", shipping 
     const formData = new FormData();
     formData.append("photo", photo)
-    formData.append("photoName", photo.name)
     formData.append("name", storeData.name)
     formData.append("price", storeData.price)
     formData.append("queantity", storeData.queantity)

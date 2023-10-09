@@ -22,7 +22,7 @@ const productSchema = mongoose.Schema({
         ref : "category",
         require : true
     },
-    photo : {
+    image : {
         type : String,
         require : true
     },
