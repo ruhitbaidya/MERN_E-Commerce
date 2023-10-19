@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {postRegister, loginControler, testUser, UserTokenVerify, forgetPasswordApi, getAllUser, deleteUserbyId} = require("../controler/allRouteControler");
+const {postRegister, loginControler, testUser, UserTokenVerify, forgetPasswordApi, getAllUser, deleteUserbyId, searchproductIndb} = require("../controler/allRouteControler");
 const {LoginProtactRoute, isAdmin} = require("../middelware/authoRouter")
 
 router.post("/", postRegister)
@@ -12,6 +12,7 @@ router.post("/admin", LoginProtactRoute, isAdmin, testUser)
 router.post("/userVerify", LoginProtactRoute, UserTokenVerify)
 router.post("/allUser",LoginProtactRoute, isAdmin, getAllUser)
 router.post("/deleteUser", LoginProtactRoute, isAdmin, deleteUserbyId)
+router.post("/searchProduct/", searchproductIndb)
 module.exports = router;
 
 

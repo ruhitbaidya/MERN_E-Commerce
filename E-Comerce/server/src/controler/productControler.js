@@ -53,4 +53,24 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-module.exports = { creatingProductControl, getAllProduct, deleteProduct }
+const ProductUpdate = (req, res)=>{
+    try{
+        const {id} = req.params;
+        
+        res.status(203).json({success : true, message : "update success"})
+    }catch(error){
+        res.status(403).json({success : false, message : "this is update route problem"})
+    }
+}
+
+const searchProductinDB = async (req, res)=>{
+    try{
+        const keyword = req.params.keyword;
+            console.log(keyword)
+            const findProduct = await productModel.find({name : {$regex : ".*" + keyword + ".*", $options : "i"}})
+        res.status(200).json({success : true, message : "this is to much the find", data : findProduct})
+    }catch(error){
+        res.status(405).json({success : false, message : "this problem has search router"})
+    }
+}
+module.exports = { creatingProductControl, getAllProduct, deleteProduct, ProductUpdate, searchProductinDB }

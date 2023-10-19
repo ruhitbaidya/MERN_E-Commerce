@@ -1,40 +1,39 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from "axios"
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
 import Footer from '../components/Footer'
 
 const ForgetPassword = () => {
-    const [text, setText] = useState({email : "", password : "", answar : ""})
+    const [text, setText] = useState({ email: "", password: "", answar: "" })
     const navigate = useNavigate();
     const handelInput = (e) => {
         setText({
             ...text,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
-    const sendData = ()=>{
+    const sendData = () => {
         axios.post("http://localhost:3001/register/user/forgetPassword", text)
-        .then((res)=>{
-            console.log(res.data.message)
-            toast.success("Reset  Successfull")
-            localStorage.setItem("userAuth", res.data.message)
-            navigate("/login")
-            setText({ email : "", password : "", answar : ""})
-        }).catch((error)=>{
-            console.log(error)
-            toast.error("Login Failed please Give Valid Email And Password")
-        })
+            .then((res) => {
+                console.log(res.data.message)
+                toast.success("Reset  Successfull")
+                localStorage.setItem("userAuth", res.data.message)
+                navigate("/login")
+                setText({ email: "", password: "", answar: "" })
+            }).catch((error) => {
+                console.log(error)
+                toast.error("Login Failed please Give Valid Email And Password")
+            })
     }
-    const handelSubmit = (e)=>{
+    const handelSubmit = (e) => {
         e.preventDefault();
         sendData()
         console.log(text)
     }
-  return (
-    <>
-        <div className='container'>
+    return (
+        <>
+            <div className='container'>
                 <div className='row'>
                     <div className='col-md-3'></div>
                     <div className='col-md-6 my-5 p-3 size-design'>
@@ -43,7 +42,7 @@ const ForgetPassword = () => {
                         <hr className="border border-danger border-2 opacity-50"></hr>
                         <form onSubmit={handelSubmit}>
                             <div className='row'>
-                               
+
                                 <div className='col-md-12 my-2'>
                                     <label htmlFor='email'>Email</label>
                                     <input type="email" name="email" value={text.email} className='form-control' placeholder='Enter Your Email' onChange={handelInput} require />
@@ -61,7 +60,7 @@ const ForgetPassword = () => {
                                         <button className="btn btn-primary" type="submit">Reset Password</button>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </form>
                     </div>
@@ -69,8 +68,8 @@ const ForgetPassword = () => {
                 </div>
             </div>
             <Footer />
-    </>
-  )
+        </>
+    )
 }
 
 export default ForgetPassword

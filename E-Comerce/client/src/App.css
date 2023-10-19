@@ -59,5 +59,29 @@ body{
   width : 200px;
   height : 200px;
 }
+.homeCard img{
+  height: 250px !important;
+}
+.cardIcon{
+  margin-left : 10px;
+}
+.cardIcon a{
+  position: relative;
+  outline: none;
+  border:none;
+  color:rgb(88, 100, 100);
+}
+.cardIcon a svg{
+  font-size: 25px;
+  margin-top:8px;
+}
+.cardIcon a span{
+ margin-top: 10px;
+ margin-left: 5px;
+}
+.card-img{
+  width:100px;
+  height: 100px;
+}
 /* font-family: 'Poppins', sans-serif;
 font-family: 'Roboto', sans-serif; */

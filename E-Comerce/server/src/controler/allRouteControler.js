@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 const { passwordGenerate, passwordCompaier } = require("../heplerFun/passwordRe")
 const { userModel } = require("../model/register_schema")
 const { secrateKey } = require("../config/secrate")
+const productModel = require("../model/productModel")
 
 const postRegister = async (req, res) => {
     try {
@@ -116,4 +117,15 @@ const deleteUserbyId = async ()=>{
         
     }
 }
-module.exports = { postRegister, loginControler, testUser, UserTokenVerify, forgetPasswordApi, getAllUser, deleteUserbyId }
+
+const searchproductIndb = async (req, res)=>{
+    // try {
+    //     // const keyword = req.params.keyword;
+    //     // console.log(keyword)
+    //     // const findProduct = await productModel.find({name : {$regex : ".*" + keyword + ".*", $options : "i"}})
+    //     res.status(204).send({success : true, message : "Product Found"})
+    // } catch (error) {
+    //     res.status(502).json({success : false, message : "Problem In Search Product"})
+    // }
+}
+module.exports = { postRegister, loginControler, testUser, UserTokenVerify, forgetPasswordApi, getAllUser, deleteUserbyId, searchproductIndb }
